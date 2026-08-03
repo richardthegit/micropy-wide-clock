@@ -10,12 +10,12 @@ from fonts import condensed90 as font_xl
 from fonts import condensed38 as font_lg
 
 color_schemes = (
-    (dark_blue, eosine_pink, light_blue),
     (brown, light_blue, eosine_pink),
     (green, cinamon_buff, cobalt_green),
     (deep_lyons_blue, ivory_buff, grayish_lavender),
     (pomegranate_purple, sulphur_yellow, eosine_pink),
     (spectrum_red, orange_yellow, turquoise_green),
+    (dark_blue, eosine_pink, light_blue),
     (coral_red, sulphur_yellow, black),
     (green_blue, white, ivory_buff),
     (vandar_poels_blue, seashell_pink, eosine_pink),
@@ -59,7 +59,7 @@ class ClockScreen:
         right = d.width - pad
         bottom = d.height - pad
 
-        bg, fg, fg2 = color_schemes[s % len(color_schemes)]
+        bg, fg, fg2 = color_schemes[m % len(color_schemes)]
         d.fill(bg)
 
         d.aligned(font_xl, f'{h:02d}:{m:02d}', left, d.height / 2, fg, bg, valign = 'middle')
