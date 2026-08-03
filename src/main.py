@@ -11,14 +11,20 @@ from clock_screen import ClockScreen
 
 print_last_reboot()
 
-with Rebooter():
-    wifi = Wifi()
-    if wifi.on():
-        wifi.ntp()
-        wifi.off()
-        wifi = None
+display, bl_pwm = new_superwide()
+clock = ClockScreen(display, bl_pwm)
 
-    clock = ClockScreen(*new_superwide())
-    while True:
-        clock.update()
-        busy_sleep(1)
+def run():
+    with Rebooter():
+        wifi = Wifi()
+        if wifi.on():
+            wifi.ntp()
+            wifi.off()
+            wifi = None
+
+        while True:
+            clock.update()
+            busy_sleep(1)
+
+if __name__ == '__main__':
+    run()

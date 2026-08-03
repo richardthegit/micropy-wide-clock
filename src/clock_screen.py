@@ -4,19 +4,23 @@ from rb.core import duty
 from rb.core.constants import MONTHS_3, DAYS_3
 from rb.core.richtext import rt
 from rb.core.tz import get_tz, local_secs
-from rb.dev.st7789 import color565
 
+from colors import *
 from fonts import condensed90 as font_xl
 from fonts import condensed38 as font_lg
-
-dark_blue = color565(6,79,110)
-light_blue = color565(167,212,228)
-brown = color565(124,66,38)
-pink = color565(243,127,148)
 
 color_schemes = (
     (dark_blue, pink, light_blue),
     (brown, light_blue, pink),
+    (green, cinamon_buff, cobalt_green),
+    (deep_lyons_blue, ivory_buff, grayish_lavender),
+    (pomegranate_purple, sulphur_yellow, eosine_pink),
+    (spectrum_red, orange_yellow, turquoise_green),
+    (coral_red, sulphur_yellow, black),
+    (green_blue, white, ivory_buff),
+    (vandar_poels_blue, seashell_pink, eosine_pink),
+    (black, white, red_orange),
+    (sulphur_yellow, red_orange, mineral_gray),
 )
 
 class ClockScreen:
@@ -33,9 +37,9 @@ class ClockScreen:
         Dim the display at night.
         """
         if hour >= 22 or hour < 6:
-            self.bl_pwm.duty_u16(duty(100 - 15))
+            self.bl_pwm.duty_u16(duty(95))
         else:
-            self.bl_pwm.duty_u16(duty(0))
+            self.bl_pwm.duty_u16(duty(70))
 
     def update(self):
         secs = local_secs()
@@ -55,7 +59,7 @@ class ClockScreen:
         right = d.width - pad
         bottom = d.height - pad
 
-        bg, fg, fg2 = color_schemes[m % 2]
+        bg, fg, fg2 = color_schemes[s % len(color_schemes)]
         d.fill(bg)
 
         d.aligned(font_xl, f'{h:02d}:{m:02d}', left, d.height / 2, fg, bg, valign = 'middle')
