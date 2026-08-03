@@ -10,8 +10,8 @@ from fonts import condensed90 as font_xl
 from fonts import condensed38 as font_lg
 
 color_schemes = (
-    (dark_blue, pink, light_blue),
-    (brown, light_blue, pink),
+    (dark_blue, eosine_pink, light_blue),
+    (brown, light_blue, eosine_pink),
     (green, cinamon_buff, cobalt_green),
     (deep_lyons_blue, ivory_buff, grayish_lavender),
     (pomegranate_purple, sulphur_yellow, eosine_pink),
